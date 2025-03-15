@@ -75,6 +75,17 @@ contract CrowdFunding {
         return (campaigns[_id].donators, campaigns[_id].donations);
     }
 
-    function getCampaigns() {}
+    // danh sách tất cả chiến dịch đã được tạo
+    function getCampaigns() public view returns(Campaign[] memory) {
+
+        Campaign[] memory allCampaigns = new Campaign[](numberOfCampaigns); // để lưu trữ tất cả các chiến dịch.
+        for(uint i = 0; i < numberOfCampaigns; i++) {
+            Campaign storage item = campaigns[i];
+
+            allCampaigns[i] = item;
+        }
+
+        return allCampaigns;
+    }
 
 }
