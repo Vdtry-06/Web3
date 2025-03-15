@@ -70,7 +70,10 @@ contract CrowdFunding {
         }
     }
 
-    function getDonations() {}
+    // Lấy danh sách người khuyên góp và số tiền họ khuyên góp cho 1 chiến dịch cụ thể
+    function getDonations(uint256 _id) view public returns (address[] memory, uint256[] memory) {
+        return (campaigns[_id].donators, campaigns[_id].donations);
+    }
 
     function getCampaigns() {}
 
