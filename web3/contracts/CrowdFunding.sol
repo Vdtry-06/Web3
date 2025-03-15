@@ -26,16 +26,32 @@ contract CrowdFunding {
         uint256 _deadline,
         string memory _image
         ) public returns (uint256) {
+            // Lấy tham chiếu đến campaign sắp tạo
             Campaign storage campaign = campaigns[numberOfCampaigns];
 
-            // is the deadline in the future?
-            require(campaign.deadline < block.timestamp, "Deadline must be in the future");
+            // Đảm bảo deadline nằm trong tương lai
+            require(campaign.deadline > block.timestamp, "The deadline should be a date in the future.");
+
+            // Gán các giá trị cho campaign
+            campaign.owner = _owner;
+            campaign.title = _title;
+            campaign.description = _description;
+            campaign.target = _target;
+            campaign.deadline = _deadline;
+            campaign.image = _image;
+            campaign.amountCollected = 0;
+            campaign.image = _image;
+
+            // Tăng số lượng chiến dịch
+            numberOfCampaigns++;
+
+            return numberOfCampaigns - 1;
         }
 
-    // function donateToCampaign() {}
+    function donateToCampaign() {}
 
-    // function getDonations() {}
+    function getDonations() {}
 
-    // function getCampaigns() {}
+    function getCampaigns() {}
 
 }
